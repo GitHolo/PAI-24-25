@@ -16,6 +16,7 @@
 function convertGrade() { 
     global $letterGrade; 
     $grade = $_POST['num']; 
+    if ($grade > 0 && $grade <= 100) { 
     if ($grade == 100) { 
         $letterGrade = 'Celujący'; 
     } else if ($grade >= 90) { 
@@ -26,9 +27,12 @@ function convertGrade() {
         $letterGrade = 'Dostateczna'; 
     } else if ($grade >= 30) { 
         $letterGrade = 'Dopuszczająca'; 
-    } else { 
+    } else if ($grade >= 0) {  
         $letterGrade = 'Niedopuszczająca'; 
     } 
+    } else { 
+        echo "Proszę podać prawidłową liczbę od 0 do 100."; 
+    }
 } 
 
 if (isset($_POST['Convert'])) { 
@@ -49,7 +53,7 @@ if (isset($_POST['Convert'])) {
                 function checkDivisibility() {
                     global $num, $result;
                     $num = $_POST['num2'];
-                    if ($num % 6 == 0) {
+                    if ($num % 2 == 0 AND $num % 3 == 0) {
                         $result = $num.' jest liczbą podzielną przez 6.';
                     } else {
                         $result = $num.' nie jest liczbą podzielną przez 6.';
